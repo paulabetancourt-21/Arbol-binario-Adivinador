@@ -37,8 +37,9 @@ public class FilePersistance {
     public void classify(String line){
         String[] lines = line.split(","); 
         NodeTree node = new NodeTree(line); 
-            if (lines[0] == "PREGUNTA") {
+            if (lines[0].equals("PREGUNTA")) {
                 node.setQuestion(true);
+                System.out.println(node.isQuestion());
             }else{
                 node.setQuestion(false);
             }

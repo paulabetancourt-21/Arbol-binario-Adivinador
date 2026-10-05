@@ -7,15 +7,17 @@ public class TreeBinaryQuestion{
     private NodeTree root;
 
     public void insert(DoublyLinkedList<NodeTree> list) {
-        root = insert(root, list);
+        root = buildTree(list);
     }
 
-    private NodeTree insert(NodeTree node, DoublyLinkedList<NodeTree> list) {
-        String data;
+    private NodeTree buildTree(DoublyLinkedList<NodeTree> list) {
+        if (list.size() == 0) return null;
         NodeTree aux = list.deletefirstNode();
-        node.setRight(insert(node.getRight(),list));
-        node.setLeft(insert(node.getLeft(),list));
-        return node;
+        if (aux.isQuestion()) {
+            aux.setLeft(buildTree(list));
+            aux.setRight(buildTree(list));
+        }
+        return aux;
     }
 
     public DoublyLinkedList<NodeTree> readFile(){
@@ -23,8 +25,7 @@ public class TreeBinaryQuestion{
         file.readFile("tree.csv");
         return file.getList(); 
     }
-
-
+    
     public void preOrder(){
         preOrder(root);
     }
@@ -34,8 +35,8 @@ public class TreeBinaryQuestion{
             return; 
         }
         System.out.println(node.getMessage());
-        preOrder(node.getRight());
         preOrder(node.getLeft());
+        preOrder(node.getRight());
     }
 
     public void inOrder(){
@@ -67,9 +68,11 @@ public class TreeBinaryQuestion{
 
     public void start() {
         DoublyLinkedList<NodeTree> list =  readFile();
+        System.out.println(list.size());
+        list.forEach(node -> System.out.println(node.isQuestion())); 
         insert(list);
         preOrder();
-
+        System.out.println(root.getLeft());
     }
 
     
