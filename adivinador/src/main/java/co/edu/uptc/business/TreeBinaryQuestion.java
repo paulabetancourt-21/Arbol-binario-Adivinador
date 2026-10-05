@@ -1,20 +1,29 @@
 package co.edu.uptc.business;
 
+import co.edu.uptc.data.FilePersistance;
+import co.edu.uptc.libraries.DoublyLinkedList;
+
 public class TreeBinaryQuestion{
     private NodeTree root;
 
-    public void insert(String data) {
-        root = insert(root, data);
+    public void insert(DoublyLinkedList<NodeTree> list) {
+        root = insert(root, list);
     }
 
-    private NodeTree insert(NodeTree node, String data) {
-        if (node == null) {
-            return new NodeTree(data); 
-        }
-        node.setRight(insert(node.getRight(),data));
-        node.setLeft(insert(node.getLeft(),data));
+    private NodeTree insert(NodeTree node, DoublyLinkedList<NodeTree> list) {
+        String data;
+        NodeTree aux = list.deletefirstNode();
+        node.setRight(insert(node.getRight(),list));
+        node.setLeft(insert(node.getLeft(),list));
         return node;
     }
+
+    public DoublyLinkedList<NodeTree> readFile(){
+        FilePersistance file = new FilePersistance(); 
+        file.readFile("tree.csv");
+        return file.getList(); 
+    }
+
 
     public void preOrder(){
         preOrder(root);
@@ -54,6 +63,13 @@ public class TreeBinaryQuestion{
         postOrder(node.getRight());
         postOrder(node.getLeft());
         System.out.println(node.getMessage());
+    }
+
+    public void start() {
+        DoublyLinkedList<NodeTree> list =  readFile();
+        insert(list);
+        preOrder();
+
     }
 
     

@@ -6,6 +6,7 @@ import co.edu.uptc.data.FilePersistance;
 public class Main {
     public static void main(String[] args) {
         TreeBinaryQuestion tree = new TreeBinaryQuestion(); 
+        tree.start();
         // tree.insert("ppp");
         // tree.insert("eee");
         // tree.insert("aaa");
@@ -17,9 +18,9 @@ public class Main {
         // System.out.println("11111111111");
         // tree.postOrder();
 
-        FilePersistance persistance = new FilePersistance();
-        persistance.readFile("tree.csv");
-        persistance.getList().forEach(node -> System.out.println(node.getMessage()));
+        // FilePersistance persistance = new FilePersistance();
+        // persistance.readFile("tree.csv");
+        // persistance.getList().forEach(node -> System.out.println(node.getMessage()));
         
     }
 }
