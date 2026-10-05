@@ -1,5 +1,6 @@
 package co.edu.uptc.presentation;
 
+import co.edu.uptc.business.Game;
 import co.edu.uptc.business.NodeTree;
 import co.edu.uptc.business.TreeBinaryQuestion;
 import co.edu.uptc.libraries.DoublyLinkedList;
@@ -23,7 +24,8 @@ public class ConsoleView {
             case 1:
                 list =  treeBinary.readFile(); 
                 treeBinary.insert(list);
-                treeBinary.preOrder();
+                Game game = new Game(); 
+                game.starGame();
                 break; 
             case 2: 
                 treeBinary.preOrder();

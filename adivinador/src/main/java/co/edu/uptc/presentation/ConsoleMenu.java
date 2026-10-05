@@ -21,4 +21,19 @@ public class ConsoleMenu {
             "Seleccione una opción: ";
         return reader.readInt(menu);
     }
+
+    public int menu2(){
+        String menu =
+            "\n-------------------------------------\n" +
+            "            Arbol binario\n" +
+            "-------------------------------------\n" +
+            " 1. Iniciar sesión de juego.\n" +
+            " 2. Desplegar la estructura mediante recorridos jerárquicos\n" +
+            " 3. Calcular la cantidad total de soluciones (nodos hoja) e interrogantes (nodos internos).\n" +
+            " 4. Restablecer la información al estado por defecto. \n" +
+            " 5. Salir\n" +
+            "-------------------------------------\n" +
+            "Seleccione una opción: ";
+        return reader.readInt(menu);
+    }
 }

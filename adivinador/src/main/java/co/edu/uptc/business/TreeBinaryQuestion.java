@@ -2,7 +2,9 @@ package co.edu.uptc.business;
 
 import co.edu.uptc.data.FilePersistance;
 import co.edu.uptc.libraries.DoublyLinkedList;
+import lombok.Getter;
 
+@Getter 
 public class TreeBinaryQuestion{
     private NodeTree root;
 
