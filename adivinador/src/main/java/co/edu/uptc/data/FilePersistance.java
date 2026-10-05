@@ -18,7 +18,6 @@ public class FilePersistance {
         try (InputStream is = open(name);
             BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
             reader.lines().forEach(linea -> {
-                //System.out.println("Línea leída: " + linea); 
                 classify(linea);
             });
         } catch (IOException e) {
@@ -39,7 +38,6 @@ public class FilePersistance {
         NodeTree node = new NodeTree(line); 
             if (lines[0].equals("PREGUNTA")) {
                 node.setQuestion(true);
-                System.out.println(node.isQuestion());
             }else{
                 node.setQuestion(false);
             }

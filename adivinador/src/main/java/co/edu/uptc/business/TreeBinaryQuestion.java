@@ -34,7 +34,7 @@ public class TreeBinaryQuestion{
         if (node == null) {
             return; 
         }
-        System.out.println(node.getMessage());
+        System.out.println(node.getMessage().split(",")[1]);
         preOrder(node.getLeft());
         preOrder(node.getRight());
     }
@@ -48,7 +48,7 @@ public class TreeBinaryQuestion{
             return; 
         }
         inOrder(node.getRight());
-        System.out.println(node.getMessage());
+        System.out.println(node.getMessage().split(",")[1]);
         inOrder(node.getLeft());
     }
 
@@ -63,16 +63,13 @@ public class TreeBinaryQuestion{
         }
         postOrder(node.getRight());
         postOrder(node.getLeft());
-        System.out.println(node.getMessage());
+        System.out.println(node.getMessage().split(",")[1]);
     }
 
     public void start() {
         DoublyLinkedList<NodeTree> list =  readFile();
-        System.out.println(list.size());
-        list.forEach(node -> System.out.println(node.isQuestion())); 
         insert(list);
         preOrder();
-        System.out.println(root.getLeft());
     }
 
     
