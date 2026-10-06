@@ -22,11 +22,13 @@ public class ConsoleView {
             option = menu.menu(); 
             switch (option) {
             case 1:
-                list =  treeBinary.readFile(); 
-                treeBinary.insert(list);
-                Game game = new Game(treeBinary); 
+                if (treeBinary.getRoot() == null) {
+                    list = treeBinary.readFile();
+                    treeBinary.insert(list);
+                }
+                Game game = new Game(treeBinary);
                 game.starGame();
-                break; 
+                break;
             case 2: 
                 treeBinary.preOrder();
                 break; 
