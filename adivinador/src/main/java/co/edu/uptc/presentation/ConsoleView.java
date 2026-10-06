@@ -24,7 +24,7 @@ public class ConsoleView {
             case 1:
                 list =  treeBinary.readFile(); 
                 treeBinary.insert(list);
-                Game game = new Game(); 
+                Game game = new Game(treeBinary); 
                 game.starGame();
                 break; 
             case 2: 

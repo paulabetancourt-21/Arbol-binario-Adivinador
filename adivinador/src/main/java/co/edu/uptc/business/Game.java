@@ -6,8 +6,9 @@ public class Game {
     private TreeBinaryQuestion treeBinary;
     private Utils util;
 
-    public Game() {
-        treeBinary = new TreeBinaryQuestion();
+    public Game(TreeBinaryQuestion tree) {
+        treeBinary = tree; 
+        util = new Utils(); 
     }
 
     // PRUEBAAAAAAAA
@@ -27,5 +28,6 @@ public class Game {
                 System.out.println("Respuesta no válida. Por favor responde 'si' o 'no'.");
             }
         }
+        System.out.println("¿Estas pensando en: " + current.getMessage().split(",")[1] + " ?");
     }
 }

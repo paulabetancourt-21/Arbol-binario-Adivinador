@@ -1,9 +1,9 @@
-PREGUNTA,¿Es un mamífero? (50)
-PREGUNTA,¿Vuela? (30)
-PERSONAJE,Murciélago (20)
-PREGUNTA,¿Es herbívoro? (40)
-PERSONAJE,Jirafa (35)
-PERSONAJE,León (45)
-PREGUNTA,¿Vive en el agua? (70)
-PERSONAJE,Tiburón (60)
-PERSONAJE,Águila (80)
+PREGUNTA,¿Es un mamífero?
+PREGUNTA,¿Vuela?
+PERSONAJE,Murciélago
+PREGUNTA,¿Es herbívoro?
+PERSONAJE,Jirafa
+PERSONAJE,León
+PREGUNTA,¿Vive en el agua?
+PERSONAJE,Tiburón
+PERSONAJE,Águila
