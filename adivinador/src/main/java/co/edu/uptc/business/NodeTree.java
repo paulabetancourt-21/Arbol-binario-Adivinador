@@ -12,8 +12,7 @@ public class NodeTree{
     private boolean isQuestion;
     private NodeTree right;
     private NodeTree left; 
-    
-//Es un nodo hoja? 
+
     public boolean isLeaf() {
         return this.left == null && this.right == null;
     }

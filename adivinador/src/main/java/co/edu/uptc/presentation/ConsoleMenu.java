@@ -15,8 +15,9 @@ public class ConsoleMenu {
             " 1. Iniciar juego\n" +
             " 2. Mostrar en preOrder\n" +
             " 3. Mostrar en inOrder\n" +
-            " 2. Mostrar en postOrder\n" +
-            " 4. Salir\n" +
+            " 4. Mostrar en postOrder\n" +
+            " 5. Mostrar arbol\n" +
+            " 6. Salir\n" +
             "-------------------------------------\n" +
             "Seleccione una opción: ";
         return reader.readInt(menu);

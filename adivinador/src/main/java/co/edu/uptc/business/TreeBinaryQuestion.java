@@ -5,7 +5,7 @@ import co.edu.uptc.libraries.DoublyLinkedList;
 import lombok.Getter;
 
 @Getter
-public class TreeBinaryQuestion{
+public class TreeBinaryQuestion {
     private NodeTree root;
 
     public void insert(DoublyLinkedList<NodeTree> list) {
@@ -13,7 +13,8 @@ public class TreeBinaryQuestion{
     }
 
     private NodeTree buildTree(DoublyLinkedList<NodeTree> list) {
-        if (list.size() == 0) return null;
+        if (list.size() == 0)
+            return null;
         NodeTree aux = list.deletefirstNode();
         if (aux.isQuestion()) {
             aux.setLeft(buildTree(list));
@@ -22,57 +23,79 @@ public class TreeBinaryQuestion{
         return aux;
     }
 
-    public DoublyLinkedList<NodeTree> readFile(){
-        FilePersistance file = new FilePersistance(); 
+    public DoublyLinkedList<NodeTree> readFile() {
+        FilePersistance file = new FilePersistance();
         file.readFile("tree.csv");
-        return file.getList(); 
+        return file.getList();
     }
-    
-    public void preOrder(){
+
+    public void preOrder() {
         preOrder(root);
     }
 
-    private void preOrder(NodeTree node){
+    private void preOrder(NodeTree node) {
         if (node == null) {
-            return; 
+            return;
         }
         System.out.println(node.getMessage().split(",")[1]);
         preOrder(node.getLeft());
         preOrder(node.getRight());
     }
 
-    public void inOrder(){
+    public void inOrder() {
         inOrder(root);
     }
 
-    private void inOrder(NodeTree node){
+    private void inOrder(NodeTree node) {
         if (node == null) {
-            return; 
+            return;
         }
         inOrder(node.getRight());
         System.out.println(node.getMessage().split(",")[1]);
         inOrder(node.getLeft());
     }
 
-
-    public void postOrder(){
+    public void postOrder() {
         postOrder(root);
     }
 
-    private void postOrder(NodeTree node){
+    private void postOrder(NodeTree node) {
         if (node == null) {
-            return; 
+            return;
         }
         postOrder(node.getRight());
         postOrder(node.getLeft());
         System.out.println(node.getMessage().split(",")[1]);
     }
 
+    public String show() {
+        if (root == null) {
+            return "El árbol está vacío.";
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append(text(root)).append("\n");
+        show(root, "", sb);
+        return sb.toString();
+    }
+
+    private void show(NodeTree node, String prefix, StringBuilder sb) {
+        if (node == null || node.isLeaf()) {
+            return;
+        }
+        sb.append(prefix).append("├── (si) ").append(text(node.getLeft())).append("\n");
+        show(node.getLeft(), prefix + "│   ", sb);
+        sb.append(prefix).append("└── (no) ").append(text(node.getRight())).append("\n");
+        show(node.getRight(), prefix + "    ", sb);
+    }
+
+    private String text(NodeTree node) {
+        return node.getMessage().split(",", 2)[1];
+    }
+
     public void start() {
-        DoublyLinkedList<NodeTree> list =  readFile();
+        DoublyLinkedList<NodeTree> list = readFile();
         insert(list);
         preOrder();
     }
 
-    
 }

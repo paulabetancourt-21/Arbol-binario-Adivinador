@@ -6,46 +6,76 @@ import co.edu.uptc.business.TreeBinaryQuestion;
 import co.edu.uptc.libraries.DoublyLinkedList;
 
 public class ConsoleView {
-    private ConsoleMenu menu; 
-    private TreeBinaryQuestion treeBinary; 
-    private DoublyLinkedList<NodeTree> list; 
+    private ConsoleMenu menu;
+    private TreeBinaryQuestion treeBinary;
+    private DoublyLinkedList<NodeTree> list;
+    private Game game;
+    private Utils utils;
 
-    public ConsoleView(){
-        menu = new ConsoleMenu(); 
-        treeBinary = new TreeBinaryQuestion(); 
-        list = new DoublyLinkedList<>(); 
+    public ConsoleView() {
+        menu = new ConsoleMenu();
+        treeBinary = new TreeBinaryQuestion();
+        list = new DoublyLinkedList<>();
+        game = new Game(treeBinary);
+        utils = new Utils(); 
     }
 
-    public void menu(){
-        int option; 
+    private void game() {
+        if (!game.hasTree()) {
+            System.out.println("El árbol está vacío.");
+            return;
+        }
+        game.startGame();
+        while (!game.isLeaf()) {
+            String option = utils.read(game.getCurrentText() + " (si/no): ");
+            if (option.equalsIgnoreCase("si") || option.equalsIgnoreCase("no")) {
+                game.advance(utils.yesOrNot(option));
+            } else {
+                System.out.println("Responde 'si' o 'no'.");
+            }
+        }
+        String guess = utils.read("¿Estás pensando en " + game.getCurrentText() + "? (si/no): ");
+        if (utils.yesOrNot(guess)) {
+            System.out.println("¡Adiviné!");
+        } else {
+            String correctAnswer = utils.read("¿En qué estabas pensando? ");
+            String correctQuestion = utils.read("¿Qué pregunta diferencia lo que dije de lo que pensabas? ");
+            game.guessCharacter(correctAnswer, correctQuestion);
+        }
+    }
+
+    public void menu() {
+        int option;
         do {
-            option = menu.menu(); 
+            option = menu.menu();
             switch (option) {
-            case 1:
+                case 1:
                 if (treeBinary.getRoot() == null) {
                     list = treeBinary.readFile();
                     treeBinary.insert(list);
                 }
-                Game game = new Game(treeBinary);
-                game.starGame();
+                game();
                 break;
-            case 2: 
-                treeBinary.preOrder();
-                break; 
-            case 3: 
-                treeBinary.inOrder();
-                break; 
-            case 4:
-                treeBinary.postOrder();
-                break; 
-            case 5:
-                System.out.println("Saliendo del sistema...");
-                break;
-            default:
-                System.out.println("Ingrese una opción valida");
-                break;
+                case 2:
+                    treeBinary.preOrder();
+                    break;
+                case 3:
+                    treeBinary.inOrder();
+                    break;
+                case 4:
+                    treeBinary.postOrder();
+                    break;
+                case 5:
+                    System.out.println(treeBinary.show());
+                    break;
+                case 6:
+                    System.out.println("Saliendo del sistema...");
+                    break;
+                default:
+                    System.out.println("Ingrese una opción valida");
+                    break;
             }
-        } while (option!=5);
-        
+        } while (option != 6);
+
     }
 }

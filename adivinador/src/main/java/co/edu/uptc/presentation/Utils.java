@@ -24,6 +24,14 @@ public class Utils {
         }
     }
 
+    public boolean yesOrNot(String answer){
+        boolean flag = false; 
+        if (answer.equalsIgnoreCase("si")) {
+            flag = true; 
+        }
+        return flag; 
+    }
+
     public int formatterInt(String line){
         int number; 
         try {
