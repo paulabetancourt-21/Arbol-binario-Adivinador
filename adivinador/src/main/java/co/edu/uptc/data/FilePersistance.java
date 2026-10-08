@@ -5,6 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import co.edu.uptc.libraries.DoublyLinkedList;
 import co.edu.uptc.business.*;
@@ -12,10 +13,27 @@ import lombok.Getter;
 
 @Getter
 public class FilePersistance {
+    private static final String CONFIG = "config.properties";
+    private static final String DEFAULT_FILE = "tree.csv";
+    private final String fileName;
     private DoublyLinkedList<NodeTree> list;
 
     public FilePersistance() {
         list = new DoublyLinkedList<>();
+        fileName = loadFileName();
+    }
+
+    private String loadFileName() {
+        Properties props = new Properties();
+        Path path = Path.of(CONFIG);
+        if (Files.exists(path)) {
+            try (InputStream is = Files.newInputStream(path)) {
+                props.load(is);
+            } catch (IOException e) {
+                System.err.println("Error al leer la configuración: " + e.getMessage());
+            }
+        }
+        return props.getProperty("file.name", DEFAULT_FILE);
     }
 
     public void readFile(String name) {
@@ -34,7 +52,16 @@ public class FilePersistance {
         if (Files.exists(externo)) {
             return Files.newInputStream(externo);
         }
-        return getClass().getResourceAsStream("/" + name);
+        InputStream is = getClass().getResourceAsStream("/" + name);
+        if (is != null) {
+            return is;
+        }
+        System.err.println("No se encontró " + name + ", se carga el archivo por defecto.");
+        is = getClass().getResourceAsStream("/" + DEFAULT_FILE);
+        if (is == null) {
+            throw new FileNotFoundException("No se encontró el archivo por defecto: " + DEFAULT_FILE);
+        }
+        return is;
     }
 
     public void classify(String line) {
@@ -51,7 +78,7 @@ public class FilePersistance {
     // REVISAR DONDE PONER EL NOMBRE DEL ARCHIVO
     public DoublyLinkedList<NodeTree> readFile() {
         FilePersistance file = new FilePersistance();
-        file.readFile("tree.csv");
+        file.readFile(fileName);
         return file.getList();
     }
 
@@ -59,7 +86,7 @@ public class FilePersistance {
         List<String> lines = new ArrayList<>();
         collect(tree.getRoot(), lines);
         try {
-            Files.write(Path.of("tree.csv"), lines, StandardCharsets.UTF_8);
+            Files.write(Path.of(fileName), lines, StandardCharsets.UTF_8);
         } catch (IOException e) {
             System.err.println("Error al guardar: " + e.getMessage());
         }
@@ -75,7 +102,7 @@ public class FilePersistance {
 
     public void reset() {
         try {
-            Files.deleteIfExists(Path.of("tree.csv"));
+            Files.deleteIfExists(Path.of(fileName));
         } catch (IOException e) {
             System.err.println("Error al reiniciar: " + e.getMessage());
         }
