@@ -24,6 +24,7 @@ public class Utils {
         }
     }
 
+    //FALTA VALIDAR QUE SOLO PUEDA SER SI O NO, ESTA TOMANDO CUALQUIER COSA QUE NO SEA SI, COMO NO 
     public boolean yesOrNot(String answer){
         boolean flag = false; 
         if (answer.equalsIgnoreCase("si")) {

@@ -63,13 +63,12 @@ public class ConsoleView {
                     file.saveTree(treeBinary);
                     break;
                 case 2:
-                    treeBinary.preOrder();
+                    System.out.println(treeBinary.preOrder()); 
                     break;
                 case 3:
-                    treeBinary.inOrder();
+                    System.out.println(treeBinary.inOrder());
                     break;
-                case 4:
-                    treeBinary.postOrder();
+                case 4:System.out.println(treeBinary.postOrder());
                     break;
                 case 5:
                     System.out.println(treeBinary.show());

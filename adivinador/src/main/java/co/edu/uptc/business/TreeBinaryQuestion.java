@@ -9,17 +9,17 @@ public class TreeBinaryQuestion {
     private int leaf;
     private int question;
 
-    private void countQuestion(boolean oneMore){
+    private void countQuestion(boolean oneMore) {
         if (oneMore) {
-            question++; 
-        }else{
-            leaf++; 
+            question++;
+        } else {
+            leaf++;
         }
     }
 
     public void iterateAndCount() {
-        leaf = 0; 
-        question = 0; 
+        leaf = 0;
+        question = 0;
         interate(root);
     }
 
@@ -28,7 +28,7 @@ public class TreeBinaryQuestion {
             return;
         }
         interate(node.getRight());
-        interate(node.getLeft());
+        interate(node.getLeft());   
         countQuestion(node.isQuestion());
     }
 
@@ -47,43 +47,49 @@ public class TreeBinaryQuestion {
         return aux;
     }
 
-    public void preOrder() {
-        preOrder(root);
+    public String preOrder() {
+        StringBuilder sb = new StringBuilder();
+        preOrder(root, sb);
+        return sb.toString();
     }
 
-    private void preOrder(NodeTree node) {
+    private void preOrder(NodeTree node, StringBuilder sb) {
         if (node == null) {
             return;
         }
-        System.out.println(node.getMessage().split(",")[1]);
-        preOrder(node.getLeft());
-        preOrder(node.getRight());
+        sb.append(node.getMessage().split(",")[1]).append("\n");
+        preOrder(node.getLeft(), sb);
+        preOrder(node.getRight(), sb);
     }
 
-    public void inOrder() {
-        inOrder(root);
+    public String inOrder() {
+        StringBuilder sb = new StringBuilder(); 
+        inOrder(root, sb);
+        return sb.toString();
     }
 
-    private void inOrder(NodeTree node) {
+    private void inOrder(NodeTree node, StringBuilder sb) {
         if (node == null) {
             return;
         }
-        inOrder(node.getRight());
-        System.out.println(node.getMessage().split(",")[1]);
-        inOrder(node.getLeft());
+        inOrder(node.getLeft(), sb);
+        sb.append(node.getMessage().split(",")[1]).append("\n");
+        inOrder(node.getRight(), sb);
     }
 
-    public void postOrder() {
-        postOrder(root);
+    public String postOrder() {
+        StringBuilder sb = new StringBuilder();
+        postOrder(root, sb);
+        return sb.toString();
     }
 
-    private void postOrder(NodeTree node) {
+    private void postOrder(NodeTree node, StringBuilder sb) {
         if (node == null) {
             return;
         }
-        postOrder(node.getRight());
-        postOrder(node.getLeft());
-        System.out.println(node.getMessage().split(",")[1]);
+        postOrder(node.getLeft(),sb);
+        postOrder(node.getRight(),sb);
+        sb.append(node.getMessage().split(",")[1]).append("\n");
     }
 
     public String show() {
