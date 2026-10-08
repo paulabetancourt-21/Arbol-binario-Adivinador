@@ -12,15 +12,15 @@ public class ConsoleView {
     private DoublyLinkedList<NodeTree> list;
     private Game game;
     private Utils utils;
-    private FilePersistance file; 
+    private FilePersistance file;
 
     public ConsoleView() {
         menu = new ConsoleMenu();
         treeBinary = new TreeBinaryQuestion();
-        file = new FilePersistance(); 
+        file = new FilePersistance();
         list = new DoublyLinkedList<>();
         game = new Game(treeBinary);
-        utils = new Utils(); 
+        utils = new Utils();
     }
 
     private void game() {
@@ -47,19 +47,21 @@ public class ConsoleView {
         }
     }
 
+    private void loadTree() {
+        list = file.readFile();
+        treeBinary.insert(list);
+    }
+
     public void menu() {
+        loadTree();
         int option;
         do {
             option = menu.menu();
             switch (option) {
                 case 1:
-                if (treeBinary.getRoot() == null) {
-                    list = file.readFile(); 
-                    treeBinary.insert(list);
-                }
-                game();
-                file.saveTree(treeBinary);
-                break;
+                    game();
+                    file.saveTree(treeBinary);
+                    break;
                 case 2:
                     treeBinary.preOrder();
                     break;
@@ -73,13 +75,20 @@ public class ConsoleView {
                     System.out.println(treeBinary.show());
                     break;
                 case 6:
+                    file.reset();
+                    treeBinary = new TreeBinaryQuestion();
+                    game = new Game(treeBinary);
+                    loadTree();
+                    System.out.println("Juego reiniciado.");
+                    break;
+                case 7:
                     System.out.println("Saliendo del sistema...");
                     break;
                 default:
                     System.out.println("Ingrese una opción valida");
                     break;
             }
-        } while (option != 6);
+        } while (option != 7);
 
     }
 }

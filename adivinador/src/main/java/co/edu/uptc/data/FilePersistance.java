@@ -72,4 +72,12 @@ public class FilePersistance {
         collect(node.getLeft(), lines);
         collect(node.getRight(), lines);
     }
+
+    public void reset() {
+        try {
+            Files.deleteIfExists(Path.of("tree.csv"));
+        } catch (IOException e) {
+            System.err.println("Error al reiniciar: " + e.getMessage());
+        }
+    }
 }

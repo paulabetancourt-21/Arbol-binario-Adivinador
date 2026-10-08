@@ -9,8 +9,8 @@
 10. Verificar que se pueda jugar con los datos que ya existen -> yes 
 11. Implementar properties, con archivo interno y externo
 12. Enseñarle a aprender -> yes 
-13. Guardar el nuevo aprendizaje
+13. Guardar el nuevo aprendizaje -> yes 
 14. Contar la cantidad de preguntas y respuestas que hay en el juego 
-15. Reiniciar (Borrar el apredizaje y dejar el original) 
+15. Reiniciar (Borrar el apredizaje y dejar el original) -> yes 
 16. Capturar los errores y manejarlos 
 17. Crear menu e implementarlo
