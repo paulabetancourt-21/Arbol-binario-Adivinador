@@ -5,10 +5,10 @@
 6. Construir el arbol binario  -> yes 
 7. Insertar cada nodo en su orden correspondiente -> yes 
 8. Mostrar su contenido en pre order principalmente -> yes 
-9. Ponerlo a jugar
-10. Verificar que se pueda jugar con los datos que ya existen 
+9. Ponerlo a jugar -> yes 
+10. Verificar que se pueda jugar con los datos que ya existen -> yes 
 11. Implementar properties, con archivo interno y externo
-12. Enseñarle a aprender 
+12. Enseñarle a aprender -> yes 
 13. Guardar el nuevo aprendizaje
 14. Contar la cantidad de preguntas y respuestas que hay en el juego 
 15. Reiniciar (Borrar el apredizaje y dejar el original) 

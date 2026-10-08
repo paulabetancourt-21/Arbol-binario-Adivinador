@@ -1,6 +1,5 @@
 package co.edu.uptc.business;
 
-import co.edu.uptc.data.FilePersistance;
 import co.edu.uptc.libraries.DoublyLinkedList;
 import lombok.Getter;
 
@@ -21,12 +20,6 @@ public class TreeBinaryQuestion {
             aux.setRight(buildTree(list));
         }
         return aux;
-    }
-
-    public DoublyLinkedList<NodeTree> readFile() {
-        FilePersistance file = new FilePersistance();
-        file.readFile("tree.csv");
-        return file.getList();
     }
 
     public void preOrder() {
@@ -92,10 +85,5 @@ public class TreeBinaryQuestion {
         return node.getMessage().split(",", 2)[1];
     }
 
-    public void start() {
-        DoublyLinkedList<NodeTree> list = readFile();
-        insert(list);
-        preOrder();
-    }
 
 }

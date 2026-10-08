@@ -4,6 +4,7 @@ import co.edu.uptc.business.Game;
 import co.edu.uptc.business.NodeTree;
 import co.edu.uptc.business.TreeBinaryQuestion;
 import co.edu.uptc.libraries.DoublyLinkedList;
+import co.edu.uptc.data.*;
 
 public class ConsoleView {
     private ConsoleMenu menu;
@@ -11,10 +12,12 @@ public class ConsoleView {
     private DoublyLinkedList<NodeTree> list;
     private Game game;
     private Utils utils;
+    private FilePersistance file; 
 
     public ConsoleView() {
         menu = new ConsoleMenu();
         treeBinary = new TreeBinaryQuestion();
+        file = new FilePersistance(); 
         list = new DoublyLinkedList<>();
         game = new Game(treeBinary);
         utils = new Utils(); 
@@ -51,10 +54,11 @@ public class ConsoleView {
             switch (option) {
                 case 1:
                 if (treeBinary.getRoot() == null) {
-                    list = treeBinary.readFile();
+                    list = file.readFile(); 
                     treeBinary.insert(list);
                 }
                 game();
+                file.saveTree(treeBinary);
                 break;
                 case 2:
                     treeBinary.preOrder();
