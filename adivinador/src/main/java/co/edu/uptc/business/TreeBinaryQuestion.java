@@ -6,6 +6,31 @@ import lombok.Getter;
 @Getter
 public class TreeBinaryQuestion {
     private NodeTree root;
+    private int leaf;
+    private int question;
+
+    private void countQuestion(boolean oneMore){
+        if (oneMore) {
+            question++; 
+        }else{
+            leaf++; 
+        }
+    }
+
+    public void iterateAndCount() {
+        leaf = 0; 
+        question = 0; 
+        interate(root);
+    }
+
+    private void interate(NodeTree node) {
+        if (node == null) {
+            return;
+        }
+        interate(node.getRight());
+        interate(node.getLeft());
+        countQuestion(node.isQuestion());
+    }
 
     public void insert(DoublyLinkedList<NodeTree> list) {
         root = buildTree(list);
@@ -84,6 +109,5 @@ public class TreeBinaryQuestion {
     private String text(NodeTree node) {
         return node.getMessage().split(",", 2)[1];
     }
-
 
 }

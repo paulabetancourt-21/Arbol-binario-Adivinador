@@ -17,13 +17,15 @@ public class ConsoleMenu {
             " 3. Mostrar en inOrder\n" +
             " 4. Mostrar en postOrder\n" +
             " 5. Mostrar arbol\n" +
-            " 6. Restablecer al estado por defecto\n" +
-            " 7. Salir\n" +
+            " 6. Contar hojas y preguntas\n" +
+            " 7. Restablecer al estado por defecto\n" +
+            " 8. Salir\n" +
             "-------------------------------------\n" +
             "Seleccione una opción: ";
         return reader.readInt(menu);
     }
 
+    
     public int menu2(){
         String menu =
             "\n-------------------------------------\n" +

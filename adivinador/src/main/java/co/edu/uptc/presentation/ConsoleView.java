@@ -75,20 +75,25 @@ public class ConsoleView {
                     System.out.println(treeBinary.show());
                     break;
                 case 6:
+                    treeBinary.iterateAndCount();
+                    System.out.println("Hojas: " + treeBinary.getLeaf());
+                    System.out.println("Preguntas: " + treeBinary.getQuestion());
+                    break;
+                case 7:
                     file.reset();
                     treeBinary = new TreeBinaryQuestion();
                     game = new Game(treeBinary);
                     loadTree();
                     System.out.println("Juego reiniciado.");
                     break;
-                case 7:
+                case 8:
                     System.out.println("Saliendo del sistema...");
                     break;
                 default:
                     System.out.println("Ingrese una opción valida");
                     break;
             }
-        } while (option != 7);
+        } while (option != 8);
 
     }
 }
