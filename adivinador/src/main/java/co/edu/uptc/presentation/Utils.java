@@ -3,10 +3,10 @@ package co.edu.uptc.presentation;
 import java.util.Scanner;
 
 public class Utils {
-    private Scanner scanner; 
+    private Scanner scanner;
 
-    public Utils(){
-        scanner = new Scanner(System.in); 
+    public Utils() {
+        scanner = new Scanner(System.in);
     }
 
     public String read(String message) {
@@ -24,22 +24,36 @@ public class Utils {
         }
     }
 
-    //FALTA VALIDAR QUE SOLO PUEDA SER SI O NO, ESTA TOMANDO CUALQUIER COSA QUE NO SEA SI, COMO NO 
-    public boolean yesOrNot(String answer){
-        boolean flag = false; 
-        if (answer.equalsIgnoreCase("si")) {
-            flag = true; 
+    public boolean yesOrNot(String question) {
+        while (true) {
+            String answer = read(question + " (si/no): ");
+            if (answer.equalsIgnoreCase("si") || answer.equalsIgnoreCase("sí")) {
+                return true;
+            }
+            if (answer.equalsIgnoreCase("no")) {
+                return false;
+            }
+            System.out.println("Responde 'si' o 'no'.");
         }
-        return flag; 
     }
 
-    public int formatterInt(String line){
-        int number; 
-        try {
-            number = Integer.parseInt(line); 
-        } catch (Exception e) {
-            number = -1; 
+    public String readNotEmpty(String message) {
+        while (true) {
+            String text = read(message).trim();
+            if (!text.isEmpty()) {
+                return text;
+            }
+            System.out.println("No puede estar vacío.");
         }
-        return number; 
+    }
+
+    public int formatterInt(String line) {
+        int number;
+        try {
+            number = Integer.parseInt(line);
+        } catch (Exception e) {
+            number = -1;
+        }
+        return number;
     }
 }

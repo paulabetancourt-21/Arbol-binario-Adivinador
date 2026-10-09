@@ -57,7 +57,7 @@ public class TreeBinaryQuestion {
         if (node == null) {
             return;
         }
-        sb.append(node.getMessage().split(",")[1]).append("\n");
+        sb.append(text(node)).append("\n");
         preOrder(node.getLeft(), sb);
         preOrder(node.getRight(), sb);
     }
@@ -73,7 +73,7 @@ public class TreeBinaryQuestion {
             return;
         }
         inOrder(node.getLeft(), sb);
-        sb.append(node.getMessage().split(",")[1]).append("\n");
+        sb.append(text(node)).append("\n");
         inOrder(node.getRight(), sb);
     }
 
@@ -89,7 +89,7 @@ public class TreeBinaryQuestion {
         }
         postOrder(node.getLeft(),sb);
         postOrder(node.getRight(),sb);
-        sb.append(node.getMessage().split(",")[1]).append("\n");
+        sb.append(text(node)).append("\n");
     }
 
     public String show() {

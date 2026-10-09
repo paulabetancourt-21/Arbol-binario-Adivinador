@@ -30,19 +30,13 @@ public class ConsoleView {
         }
         game.startGame();
         while (!game.isLeaf()) {
-            String option = utils.read(game.getCurrentText() + " (si/no): ");
-            if (option.equalsIgnoreCase("si") || option.equalsIgnoreCase("no")) {
-                game.advance(utils.yesOrNot(option));
-            } else {
-                System.out.println("Responde 'si' o 'no'.");
-            }
+            game.advance(utils.yesOrNot(game.getCurrentText()));
         }
-        String guess = utils.read("¿Estás pensando en " + game.getCurrentText() + "? (si/no): ");
-        if (utils.yesOrNot(guess)) {
+        if (utils.yesOrNot("¿Estás pensando en " + game.getCurrentText() + "?")) {
             System.out.println("¡Adiviné!");
         } else {
-            String correctAnswer = utils.read("¿En qué estabas pensando? ");
-            String correctQuestion = utils.read("¿Qué pregunta diferencia lo que dije de lo que pensabas? ");
+            String correctAnswer = utils.readNotEmpty("¿En qué estabas pensando? ");
+            String correctQuestion = utils.readNotEmpty("Escribe una pregunta que se responda 'si' para " + correctAnswer+ " y 'no' para " + game.getCurrentText() + ": ");
             game.guessCharacter(correctAnswer, correctQuestion);
         }
     }
@@ -63,12 +57,13 @@ public class ConsoleView {
                     file.saveTree(treeBinary);
                     break;
                 case 2:
-                    System.out.println(treeBinary.preOrder()); 
+                    System.out.println(treeBinary.preOrder());
                     break;
                 case 3:
                     System.out.println(treeBinary.inOrder());
                     break;
-                case 4:System.out.println(treeBinary.postOrder());
+                case 4:
+                    System.out.println(treeBinary.postOrder());
                     break;
                 case 5:
                     System.out.println(treeBinary.show());

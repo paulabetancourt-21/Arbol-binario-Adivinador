@@ -75,7 +75,6 @@ public class FilePersistance {
         list.addTheEnd(node);
     }
 
-    // REVISAR DONDE PONER EL NOMBRE DEL ARCHIVO
     public DoublyLinkedList<NodeTree> readFile() {
         FilePersistance file = new FilePersistance();
         file.readFile(fileName);
